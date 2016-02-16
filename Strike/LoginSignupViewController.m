@@ -7,10 +7,12 @@
 //
 
 #import "LoginSignupViewController.h"
+#import "User.h"
 
 @interface LoginSignupViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (nonatomic) User *currentUser;
 
 @end
 
@@ -18,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.currentUser = [[User alloc]initWithFireBaseAccount];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,6 +28,11 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)loginButtonTapped:(UIButton *)sender {
+    [self.currentUser loginFireBaseWithEmail:self.emailTextField.text andPW:self.passwordTextField.text completionHandler:^(NSError *error, FAuthData *authData) {
+        if (!error) {
+            NSLog(@"login success");
+        }
+    }];
 }
 - (IBAction)registerButtonTapped:(UIButton *)sender {
 }

@@ -10,6 +10,8 @@
 		273FF9E2C0B07905D6A1DFDF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4E177048F0D1723A9FEE9E /* libPods.a */; };
 		D43EA64A1C72EC7B00819CBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43EA6491C72EC7B00819CBD /* Main.storyboard */; };
 		D43EA64D1C72ED1E00819CBD /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA64C1C72ED1E00819CBD /* LoginSignupViewController.m */; };
+		D43EA6501C72EFFA00819CBD /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA64F1C72EFFA00819CBD /* Email.m */; };
+		D43EA6531C72F07000819CBD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA6521C72F07000819CBD /* User.m */; };
 		D45112631C710F0B00088B72 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45112621C710F0B00088B72 /* WelcomeViewController.m */; };
 		D475E4601C70F88500C3914D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D475E45F1C70F88500C3914D /* main.m */; };
 		D475E4631C70F88500C3914D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D475E4621C70F88500C3914D /* AppDelegate.m */; };
@@ -36,6 +38,10 @@
 		D43EA6491C72EC7B00819CBD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D43EA64B1C72ED1E00819CBD /* LoginSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSignupViewController.h; sourceTree = "<group>"; };
 		D43EA64C1C72ED1E00819CBD /* LoginSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSignupViewController.m; sourceTree = "<group>"; };
+		D43EA64E1C72EFFA00819CBD /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
+		D43EA64F1C72EFFA00819CBD /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
+		D43EA6511C72F07000819CBD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D43EA6521C72F07000819CBD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D45112611C710F0B00088B72 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		D45112621C710F0B00088B72 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		D475E45B1C70F88500C3914D /* Strike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Strike.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +96,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D43EA6541C72F17B00819CBD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D43EA6511C72F07000819CBD /* User.h */,
+				D43EA6521C72F07000819CBD /* User.m */,
+				D43EA64E1C72EFFA00819CBD /* Email.h */,
+				D43EA64F1C72EFFA00819CBD /* Email.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D475E4521C70F88400C3914D = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +138,7 @@
 				D45112621C710F0B00088B72 /* WelcomeViewController.m */,
 				D43EA64B1C72ED1E00819CBD /* LoginSignupViewController.h */,
 				D43EA64C1C72ED1E00819CBD /* LoginSignupViewController.m */,
+				D43EA6541C72F17B00819CBD /* Model */,
 				D43EA6491C72EC7B00819CBD /* Main.storyboard */,
 				D475E46D1C70F88500C3914D /* Assets.xcassets */,
 				D475E46F1C70F88500C3914D /* LaunchScreen.storyboard */,
@@ -299,8 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D43EA6531C72F07000819CBD /* User.m in Sources */,
 				D43EA64D1C72ED1E00819CBD /* LoginSignupViewController.m in Sources */,
 				D45112631C710F0B00088B72 /* WelcomeViewController.m in Sources */,
+				D43EA6501C72EFFA00819CBD /* Email.m in Sources */,
 				D475E4661C70F88500C3914D /* ViewController.m in Sources */,
 				D475E46C1C70F88500C3914D /* Strike.xcdatamodeld in Sources */,
 				D475E4631C70F88500C3914D /* AppDelegate.m in Sources */,
