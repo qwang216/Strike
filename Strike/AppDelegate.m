@@ -18,18 +18,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    Strike1Keys *keys = [[Strike1Keys alloc]init];
-    if (![SparkCloud sharedInstance].loggedInUsername) {
-        [[SparkCloud sharedInstance] loginWithUser:keys.username password:keys.password completion:^(NSError *error) {
-            if (!error) {
-                NSLog(@"Login Success with %@", [SparkCloud sharedInstance].loggedInUsername);
-            }
-        }];
-    } else {
-        NSLog(@"User already Logged as %@", [SparkCloud sharedInstance].loggedInUsername);
-    }
-
-    
+//    Strike1Keys *keys = [[Strike1Keys alloc]init];
+//    if (![SparkCloud sharedInstance].loggedInUsername) {
+//        [[SparkCloud sharedInstance] loginWithUser:keys.username password:keys.password completion:^(NSError *error) {
+//            if (!error) {
+//                NSLog(@"Login Success with %@", [SparkCloud sharedInstance].loggedInUsername);
+//            }
+//        }];
+//    } else {
+//        NSLog(@"User already Logged as %@", [SparkCloud sharedInstance].loggedInUsername);
+//    }    
     return YES;
 }
 
