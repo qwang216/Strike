@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <Spark-SDK/SparkCloud.h>
-#import "Strike1Keys.h"
 
 @interface AppDelegate ()
 
@@ -18,17 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    Strike1Keys *keys = [[Strike1Keys alloc]init];
-//    if (![SparkCloud sharedInstance].loggedInUsername) {
-//        [[SparkCloud sharedInstance] loginWithUser:keys.username password:keys.password completion:^(NSError *error) {
-//            if (!error) {
-//                NSLog(@"Login Success with %@", [SparkCloud sharedInstance].loggedInUsername);
-//            }
-//        }];
-//    } else {
-//        NSLog(@"User already Logged as %@", [SparkCloud sharedInstance].loggedInUsername);
-//    }    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]) {
+        [self presentWelcomeVC];
+    }
     return YES;
+}
+
+- (void)presentWelcomeVC {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *welcomeVC = [storyboard instantiateViewControllerWithIdentifier:@"tabBarControllerID"];
+    self.window.rootViewController = welcomeVC;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -7,14 +7,12 @@
 //
 
 #import "WelcomeViewController.h"
-#import "Strike1Keys.h"
 #import <SparkSetup/SparkSetup.h>
 #import <Spark-SDK/SparkCloud.h>
 
 @interface WelcomeViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (nonatomic) __block SparkDevice *myPhoton;
-@property (nonatomic) Strike1Keys *keys;
 
 @end
 
@@ -23,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self grabDevice];
-    self.keys = [[Strike1Keys alloc]init];
     NSLog(@"WelcomeVC: ViewDidLoad accessToken = %@",[SparkCloud sharedInstance].accessToken);
 }
 
@@ -88,9 +85,9 @@
     
     [[SparkCloud sharedInstance] logout];
     
-    [[SparkCloud sharedInstance] loginWithUser:self.keys.username password:self.keys.password completion:^(NSError *error) {
-        NSLog(@"Logback to keysAccount");
-    }];
+//    [[SparkCloud sharedInstance] loginWithUser:self.keys.username password:self.keys.password completion:^(NSError *error) {
+//        NSLog(@"Logback to keysAccount");
+//    }];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

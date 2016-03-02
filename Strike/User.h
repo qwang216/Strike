@@ -10,12 +10,11 @@
 #import <Firebase/Firebase.h>
 
 @interface User : NSObject
-
-@property (nonatomic) NSString *userEmail;
-@property (nonatomic) NSString *userPassword;
 @property (nonatomic) Firebase *acctRef;
+@property (nonatomic) NSUserDefaults *authDataDefualts;
 
 - (instancetype)initWithFireBaseAccount;
 - (void)loginFireBaseWithEmail:(NSString *)email andPW:(NSString *)password completionHandler: (void (^)(NSError *error, FAuthData *authData))onCompletion;
-- (void)registerFireBaseWithEmail:(NSString *)email andPW:(NSString *)password completionHandler: (void (^)(NSError *error))onCompletion;
+- (void)registerFireBaseWithEmail:(NSString *)email andPW:(NSString *)password withname:(NSString *)name completionHandler: (void (^)(NSError *error))onCompletion;
+- (void)loginFireBaseWithTwitter;
 @end

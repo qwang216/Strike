@@ -1,38 +1,32 @@
 //
-//  LoginSignupViewController.m
+//  RegisterViewController.m
 //  Strike
 //
-//  Created by Jason Wang on 2/15/16.
+//  Created by Jason Wang on 3/2/16.
 //  Copyright © 2016 Jason Wang. All rights reserved.
 //
 
-#import "LoginSignupViewController.h"
+#import "RegisterViewController.h"
 #import "User.h"
-#import "Email.h"
 
-@interface LoginSignupViewController () <UITextFieldDelegate>
+@interface RegisterViewController () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (nonatomic) User *currentUser;
 
 @end
 
-@implementation LoginSignupViewController
+@implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        self.currentUser = [[User alloc]initWithFireBaseAccount];
-        self.emailTextField.delegate = self;
-        self.passwordTextField.delegate = self;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    self.currentUser = [[User alloc]initWithFireBaseAccount];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSLog(@"LoginVC MemoryWarning");
+    NSLog(@"RegisterVC Memory Warning");
 }
 
 - (void)pushToTabBarController {
@@ -41,24 +35,23 @@
     [self presentViewController:welcomeVC animated:YES completion:nil];
 }
 
-
 #pragma mark -
 #pragma mark IBActions
+- (IBAction)registerButtonTapped:(UIButton *)sender {
+    [self registerNameEmailAndPasswordToFireBase];
+}
+- (IBAction)cancelButtonTapped:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
-- (IBAction)loginButtonTapped:(UIButton *)sender {
-    [self.currentUser loginFireBaseWithEmail:self.emailTextField.text andPW:self.passwordTextField.text completionHandler:^(NSError *error, FAuthData *authData) {
+- (void)registerNameEmailAndPasswordToFireBase {
+    [self.currentUser registerFireBaseWithEmail:self.emailTextField.text andPW:self.passwordTextField.text withname:self.nameTextField.text completionHandler:^(NSError *error) {
         if (!error) {
             [self pushToTabBarController];
         } else {
             [self alertWithError:[error.userInfo objectForKeyedSubscript:NSLocalizedDescriptionKey]];
-            NSLog(@"%@",error);
         }
     }];
-}
-
-- (IBAction)loginWithTwitterButtonTapped:(UIButton *)sender {
-    [self.currentUser loginFireBaseWithTwitter];
-    [self pushToTabBarController];
 }
 
 #pragma mark -
@@ -74,7 +67,6 @@
 
 #pragma mark -
 #pragma mark TextField Delegation
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return YES;
 }
@@ -87,5 +79,4 @@
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [[self view] endEditing:YES];
 }
-
 @end

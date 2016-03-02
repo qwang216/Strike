@@ -28,10 +28,6 @@ THE SOFTWARE.
 
 https://www.firebase.com/terms/terms-of-service.html
 
-## Keys
-
-MIT LICENSE Found in the repo
-
 ## Spark-SDK
 
 Apache License

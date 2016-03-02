@@ -21,7 +21,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Firebase (2.5.0)
-  - Keys (1.0.0)
   - Spark-SDK (0.3.4):
     - Spark-SDK/Helpers (= 0.3.4)
     - Spark-SDK/SDK (= 0.3.4)
@@ -42,18 +41,12 @@ PODS:
 
 DEPENDENCIES:
   - Firebase (>= 2.5.0)
-  - Keys (from `Pods/CocoaPodsKeys`)
   - Spark-SDK
   - SparkSetup
-
-EXTERNAL SOURCES:
-  Keys:
-    :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
-  Keys: 7d2ff6ff42f6903358267ce56e9392f83c31acfe
   Spark-SDK: f5dad30a5afa319f43ca570a64f241c73c693641
   SparkSetup: f9618dd24548ab8a024efdaa65a89f63ed44a7ee
 

@@ -134,7 +134,6 @@
                  // dismiss modal view and call main controller delegate to go on to setup process since login is complete
 //                 [self dismissViewControllerAnimated:YES completion:^{
                  [self.delegate didFinishUserAuthentication:self loggedIn:YES];
-                 [self clearUserDefaultsAndResetUserDefaults];
 //                 }];
              }
              else
@@ -163,12 +162,6 @@
 
 }
 
-- (void) clearUserDefaultsAndResetUserDefaults{
-    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-    [[NSUserDefaults standardUserDefaults] setObject:self.emailTextField.text forKey:@"email"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTextField.text forKey:@"password"];
-}
 
 - (IBAction)noAccountButton:(id)sender
 {
