@@ -41,7 +41,8 @@
             [self.acctRef authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
                 if (!error) {
                     NSDictionary * userDict = @{@"name":name, @"email":email};
-                    [self saveUserInfoToFireBase:authData withDict:userDict];
+                    [self saveUserInfoUnderRegisteredUserAndUserPoolWith:authData withDict:userDict];
+                    onCompletion(error);
                 }
             }];
         }
@@ -66,20 +67,18 @@
 #pragma mark - 
 #pragma mark Save User Info
 
-- (void)saveUserInfoToFireBase:(FAuthData *)authData withDict:(NSDictionary *)userDict {
-    
-    NSDictionary * currentUserData = @{@"email":userDict[@"email"], @"name":userDict[@"name"], @"uid":authData.uid};
-    
+- (void)saveUserInfoUnderRegisteredUserAndUserPoolWith:(FAuthData *)authData withDict:(NSDictionary *)userDict {
+    NSMutableDictionary *currentUserData = [NSMutableDictionary dictionaryWithDictionary:userDict];
+    [currentUserData setObject:authData.providerData[@"profileImageURL"] forKey:@"profileImageURL"];
     
     [[NSUserDefaults standardUserDefaults] setObject:authData.uid forKey:@"uid"];
-    [[NSUserDefaults standardUserDefaults] setObject:authData.providerData[@"profileImageURL"] forKey:@"profileImageURL"];
+    [[[self.acctRef childByAppendingPath:@"registered_users"] childByAppendingPath:authData.uid] setValue:currentUserData];
+    [self setupUserFriendsList:authData];
+}
 
-    Firebase *user = [self.acctRef childByAppendingPath:@"registered_users"];
-    Firebase *currentUser = [user childByAppendingPath:[NSString stringWithFormat:@"%@",authData.uid]];
-    
-    [currentUser setValue:currentUserData];
-    
-
+- (void)setupUserFriendsList:(FAuthData *)authData {
+    [[self.acctRef childByAppendingPath:@"friends_list"] childByAppendingPath:authData.uid];
+    [[self.acctRef childByAppendingPath:@"friends_list"] childByAppendingPath:@"friends_request"];
 }
 
 @end
