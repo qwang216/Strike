@@ -6,33 +6,24 @@
 //  Copyright © 2016 Jason Wang. All rights reserved.
 //
 
-#import "LoginSignupViewController.h"
+#import "LoginViewController.h"
 #import "User.h"
 #import "Email.h"
 
-@interface LoginSignupViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (nonatomic) User *currentUser;
 
 @end
 
-@implementation LoginSignupViewController
+@implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
         self.currentUser = [[User alloc]initWithFireBaseAccount];
         self.emailTextField.delegate = self;
         self.passwordTextField.delegate = self;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    NSLog(@"LoginVC MemoryWarning");
 }
 
 - (void)pushToTabBarController {
@@ -57,8 +48,14 @@
 }
 
 - (IBAction)loginWithTwitterButtonTapped:(UIButton *)sender {
-    [self.currentUser loginFireBaseWithTwitter];
-    [self pushToTabBarController];
+    [self.currentUser loginFireBaseWithTwitterCompletion:^(BOOL didSignIn, NSError *error) {
+        if (didSignIn) {
+            [self pushToTabBarController];
+        } else {
+            NSLog(@"Twitter login Erro = %@",error.localizedDescription);
+        }
+    }];
+    
 }
 
 #pragma mark -

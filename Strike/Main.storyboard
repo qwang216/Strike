@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-505" y="-554"/>
         </scene>
-        <!--Login Signup View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="a3F-I4-IrI">
             <objects>
-                <viewController storyboardIdentifier="loginSignupVCID" id="Sq3-nv-WPh" customClass="LoginSignupViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginSignupVCID" id="Sq3-nv-WPh" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4EI-xT-jza"/>
                         <viewControllerLayoutGuide type="bottom" id="b0H-nz-o2W"/>
@@ -449,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dhi-AQ-qAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1236" y="251"/>
+            <point key="canvasLocation" x="1222" y="251"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ku0-Vw-pXn">

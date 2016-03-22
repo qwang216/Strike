@@ -28,9 +28,10 @@
 - (void)loginFireBaseWithEmail:(NSString *)email andPW:(NSString *)password completionHandler: (void (^)(NSError *error, FAuthData *authData))onCompletion {
     [self.acctRef authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
         if (!error) {
-            // query from fire base using uid abt userinfo
+            [self storeUIDLocally:authData];
+            onCompletion(nil,authData);
         }
-        onCompletion(error,authData);
+        onCompletion(error,nil);
     }];
 }
 
@@ -40,8 +41,8 @@
         if (!error) {
             [self.acctRef authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
                 if (!error) {
-                    NSDictionary * userDict = @{@"name":name, @"email":email};
-                    [self saveUserInfoUnderRegisteredUserAndUserPoolWith:authData withDict:userDict];
+                    NSDictionary * userDict = @{@"name":name, @"username":email};
+                    [self saveUserDataToFireBase:authData withDict:userDict];
                     onCompletion(error);
                 }
             }];
@@ -49,7 +50,7 @@
     }];
 }
 
-- (void)loginFireBaseWithTwitter {
+- (void)loginFireBaseWithTwitterCompletion:(void(^)(BOOL didSignIn, NSError *error))onCompletion {
     TwitterAuthHelper *twitterAuthHelper = [[TwitterAuthHelper alloc] initWithFirebaseRef:self.acctRef apiKey:@"ZJT3XZ1M4dPV1tU9KvaqpSx8r"];
     [twitterAuthHelper selectTwitterAccountWithCallback:^(NSError *error, NSArray *accounts) {
         if (!error) {
@@ -57,7 +58,11 @@
             ACAccount *twitterAcount = [accounts firstObject];
             [twitterAuthHelper authenticateAccount:twitterAcount withCallback:^(NSError *error, FAuthData *authData) {
                 if (!error) {
-                    // set twitter to firebase
+                    NSDictionary *userDict = @{@"name":authData.providerData[@"displayName"], @"username": authData.providerData[@"username"]};
+                    [self saveUserDataToFireBase:authData withDict:userDict];
+                    onCompletion(YES, nil);
+                } else {
+                    onCompletion(NO, error);
                 }
             }];
         }
@@ -67,18 +72,25 @@
 #pragma mark - 
 #pragma mark Save User Info
 
-- (void)saveUserInfoUnderRegisteredUserAndUserPoolWith:(FAuthData *)authData withDict:(NSDictionary *)userDict {
-    NSMutableDictionary *currentUserData = [NSMutableDictionary dictionaryWithDictionary:userDict];
-    [currentUserData setObject:authData.providerData[@"profileImageURL"] forKey:@"profileImageURL"];
+- (void)saveUserDataToFireBase:(FAuthData *)authData withDict:(NSDictionary *)userDict {
     
-    [[NSUserDefaults standardUserDefaults] setObject:authData.uid forKey:@"uid"];
-    [[[self.acctRef childByAppendingPath:@"registered_users"] childByAppendingPath:authData.uid] setValue:currentUserData];
-    [self setupUserFriendsList:authData];
+    if (userDict) {
+        NSMutableDictionary *currentUserData = [NSMutableDictionary dictionaryWithDictionary:userDict];
+        [currentUserData setObject:authData.providerData[@"profileImageURL"] forKey:@"profileImageURL"];
+        [[[self.acctRef childByAppendingPath:@"registered_users"] childByAppendingPath:authData.uid] setValue:currentUserData];
+    } else {
+        NSMutableDictionary *currentUserData = [NSMutableDictionary new];
+        [currentUserData setObject:authData.providerData[@"profileImageURL"] forKey:@"profileImageURL"];
+        [[[self.acctRef childByAppendingPath:@"registered_users"] childByAppendingPath:authData.uid] setValue:currentUserData];
+    }
+    
+    [self storeUIDLocally:authData];
 }
 
-- (void)setupUserFriendsList:(FAuthData *)authData {
-    [[self.acctRef childByAppendingPath:@"friends_list"] childByAppendingPath:authData.uid];
-    [[self.acctRef childByAppendingPath:@"friends_list"] childByAppendingPath:@"friends_request"];
+- (void)storeUIDLocally:(FAuthData *)authData {
+
+  [[NSUserDefaults standardUserDefaults] setObject:authData.uid forKey:@"currentUserUid"];
+    
 }
 
 @end

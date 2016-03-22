@@ -17,7 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]) {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserUid"]) {
         [self presentWelcomeVC];
     }
     return YES;

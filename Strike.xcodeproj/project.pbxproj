@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		273FF9E2C0B07905D6A1DFDF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4E177048F0D1723A9FEE9E /* libPods.a */; };
 		D43EA64A1C72EC7B00819CBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43EA6491C72EC7B00819CBD /* Main.storyboard */; };
-		D43EA64D1C72ED1E00819CBD /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA64C1C72ED1E00819CBD /* LoginSignupViewController.m */; };
+		D43EA64D1C72ED1E00819CBD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA64C1C72ED1E00819CBD /* LoginViewController.m */; };
 		D43EA6501C72EFFA00819CBD /* Email.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA64F1C72EFFA00819CBD /* Email.m */; };
 		D43EA6531C72F07000819CBD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D43EA6521C72F07000819CBD /* User.m */; };
 		D45112631C710F0B00088B72 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45112621C710F0B00088B72 /* WelcomeViewController.m */; };
@@ -24,6 +24,8 @@
 		D4C8454D1C79656000D297ED /* TwitterAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C8454C1C79656000D297ED /* TwitterAuthHelper.m */; };
 		D4C845501C796A2D00D297ED /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8454F1C796A2C00D297ED /* Accounts.framework */; };
 		D4C845521C796B3500D297ED /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C845511C796B3500D297ED /* Social.framework */; };
+		D4DF3BAD1C96110300D1C3DD /* STQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DF3BAC1C96110300D1C3DD /* STQuery.m */; };
+		D4DF3BB01C993AE100D1C3DD /* STPost.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DF3BAF1C993AE100D1C3DD /* STPost.m */; };
 		D4F2A97D1C76F560009A1B3E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F2A97C1C76F560009A1B3E /* ProfileViewController.m */; };
 		D4F542751C8785C30030696D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F542741C8785C30030696D /* RegisterViewController.m */; };
 /* End PBXBuildFile section */
@@ -42,8 +44,8 @@
 		AEC534D43DBE5EACE75A4C86 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D427EC3F4560C3335138F0FD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D43EA6491C72EC7B00819CBD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D43EA64B1C72ED1E00819CBD /* LoginSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSignupViewController.h; sourceTree = "<group>"; };
-		D43EA64C1C72ED1E00819CBD /* LoginSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSignupViewController.m; sourceTree = "<group>"; };
+		D43EA64B1C72ED1E00819CBD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		D43EA64C1C72ED1E00819CBD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D43EA64E1C72EFFA00819CBD /* Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email.h; sourceTree = "<group>"; };
 		D43EA64F1C72EFFA00819CBD /* Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email.m; sourceTree = "<group>"; };
 		D43EA6511C72F07000819CBD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -69,6 +71,10 @@
 		D4C8454C1C79656000D297ED /* TwitterAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterAuthHelper.m; sourceTree = "<group>"; };
 		D4C8454F1C796A2C00D297ED /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D4C845511C796B3500D297ED /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D4DF3BAB1C96110300D1C3DD /* STQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STQuery.h; sourceTree = "<group>"; };
+		D4DF3BAC1C96110300D1C3DD /* STQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STQuery.m; sourceTree = "<group>"; };
+		D4DF3BAE1C993AE100D1C3DD /* STPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPost.h; sourceTree = "<group>"; };
+		D4DF3BAF1C993AE100D1C3DD /* STPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPost.m; sourceTree = "<group>"; };
 		D4F2A97B1C76F560009A1B3E /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		D4F2A97C1C76F560009A1B3E /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		D4F542731C8785C30030696D /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -116,11 +122,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D42490CD1CA09CBF00325701 /* PrototypeFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D475E4641C70F88500C3914D /* ViewController.h */,
+				D475E4651C70F88500C3914D /* ViewController.m */,
+				D45112611C710F0B00088B72 /* WelcomeViewController.h */,
+				D45112621C710F0B00088B72 /* WelcomeViewController.m */,
+			);
+			name = PrototypeFiles;
+			sourceTree = "<group>";
+		};
 		D43EA6541C72F17B00819CBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				D43EA6511C72F07000819CBD /* User.h */,
 				D43EA6521C72F07000819CBD /* User.m */,
+				D4DF3BAB1C96110300D1C3DD /* STQuery.h */,
+				D4DF3BAC1C96110300D1C3DD /* STQuery.m */,
+				D4DF3BAE1C993AE100D1C3DD /* STPost.h */,
+				D4DF3BAF1C993AE100D1C3DD /* STPost.m */,
 				D43EA64E1C72EFFA00819CBD /* Email.h */,
 				D43EA64F1C72EFFA00819CBD /* Email.m */,
 				D4B6631E1C7AC2D800957242 /* MyManager.h */,
@@ -154,10 +175,7 @@
 			children = (
 				D475E4611C70F88500C3914D /* AppDelegate.h */,
 				D475E4621C70F88500C3914D /* AppDelegate.m */,
-				D475E4641C70F88500C3914D /* ViewController.h */,
-				D475E4651C70F88500C3914D /* ViewController.m */,
-				D45112611C710F0B00088B72 /* WelcomeViewController.h */,
-				D45112621C710F0B00088B72 /* WelcomeViewController.m */,
+				D42490CD1CA09CBF00325701 /* PrototypeFiles */,
 				D4F2A97E1C76F568009A1B3E /* ViewControllers */,
 				D43EA6541C72F17B00819CBD /* Model */,
 				D43EA6491C72EC7B00819CBD /* Main.storyboard */,
@@ -192,8 +210,8 @@
 		D4F2A97E1C76F568009A1B3E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D43EA64B1C72ED1E00819CBD /* LoginSignupViewController.h */,
-				D43EA64C1C72ED1E00819CBD /* LoginSignupViewController.m */,
+				D43EA64B1C72ED1E00819CBD /* LoginViewController.h */,
+				D43EA64C1C72ED1E00819CBD /* LoginViewController.m */,
 				D4F542731C8785C30030696D /* RegisterViewController.h */,
 				D4F542741C8785C30030696D /* RegisterViewController.m */,
 				D4F2A97B1C76F560009A1B3E /* ProfileViewController.h */,
@@ -355,8 +373,10 @@
 			files = (
 				D43EA6531C72F07000819CBD /* User.m in Sources */,
 				D4C8454D1C79656000D297ED /* TwitterAuthHelper.m in Sources */,
+				D4DF3BAD1C96110300D1C3DD /* STQuery.m in Sources */,
 				D4F2A97D1C76F560009A1B3E /* ProfileViewController.m in Sources */,
-				D43EA64D1C72ED1E00819CBD /* LoginSignupViewController.m in Sources */,
+				D4DF3BB01C993AE100D1C3DD /* STPost.m in Sources */,
+				D43EA64D1C72ED1E00819CBD /* LoginViewController.m in Sources */,
 				D4B663201C7AC2D800957242 /* MyManager.m in Sources */,
 				D45112631C710F0B00088B72 /* WelcomeViewController.m in Sources */,
 				D43EA6501C72EFFA00819CBD /* Email.m in Sources */,
