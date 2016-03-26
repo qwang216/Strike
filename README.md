@@ -10,4 +10,4 @@ https://drive.google.com/file/d/0B10sgtvZ8EUoWGlDTndVM3BBNlk/view?usp=sharing
 
 Locked state:              |  Unlocked state:
 :-------------------------:|:-------------------------:
-<img src="https://raw.githubusercontent.com/ericysze/Strike/master/Images/Locked%20State.png" width="400" height="565">  |   <img src="https://raw.githubusercontent.com/ericysze/Strike/master/Images/Unlocked%20State.png" width="400" height="565">
+<img src="https://github.com/qwang216/Strike/blob/master/ImageFiles/Locked%20State.png" width="400" height="565">  |   <img src="https://github.com/qwang216/Strike/blob/master/ImageFiles/Unlocked%20State.png" width="400" height="565">
