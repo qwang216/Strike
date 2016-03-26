@@ -2,7 +2,7 @@
 
 
 ## Synopsis
-Strike is an iOS app that can remotely unlock a door with a tap of a button. The App is connected to the hardware by integrating Particle SDK to control remotely.
+Strike is an iOS app that can remotely unlock a door with a tap of a button. The App is connected to the Particle hardware with integrated Particle SDK to control remotely.
 
 ## Prototype Video
 Here’s 10 second video of the prototype. 
