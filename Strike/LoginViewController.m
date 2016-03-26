@@ -22,9 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         self.currentUser = [[User alloc]initWithFireBaseAccount];
-        self.emailTextField.delegate = self;
-        self.passwordTextField.delegate = self;
+    [self setupTextFieldDelegate];
 }
+
 
 - (void)pushToTabBarController {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -71,6 +71,11 @@
 
 #pragma mark -
 #pragma mark TextField Delegation
+
+- (void)setupTextFieldDelegate {
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+}
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     return YES;

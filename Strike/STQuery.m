@@ -11,9 +11,9 @@
 
 
 @implementation STQuery
-
+// query user with email/username
 + (void)queryUserWithEmail:(NSString *)email handler:(void (^)(User *foundUser))onCompletion {
-    Firebase *registeredUserRef = [[Firebase alloc]initWithUrl:@"https://strike7.firebaseio.com/registered_users"];
+    Firebase *registeredUserRef = [[Firebase alloc]initWithUrl:@"https://strike7.firebaseio.com/users"];
     [[[registeredUserRef queryOrderedByChild:@"username"]queryEqualToValue:email] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSLog(@"snapshot = %@",snapshot);
         if (snapshot.value == [NSNull null]) {
@@ -30,11 +30,10 @@
     }];
 }
 
-
+// Query contact list
 + (void)queryContactListWithCompletionBlock:(void (^)(NSArray <User*> *contactsList))onCompletion {
-    NSString *currentUserUid = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserUid"];
-    if (currentUserUid) {
-        Firebase *queryFriend = [[Firebase alloc]initWithUrl:[NSString stringWithFormat:@"https://strike7.firebaseio.com/contacts/%@/accepted_contactslist",currentUserUid]];
+    if ([self currentUserUid]) {
+        Firebase *queryFriend = [[Firebase alloc]initWithUrl:[NSString stringWithFormat:@"https://strike7.firebaseio.com/contacts/%@/contactlist",[self currentUserUid]]];
         [queryFriend observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSMutableArray <User *>*contactList = [NSMutableArray new];
             for (FDataSnapshot *contactFriend in snapshot.children) {
@@ -47,15 +46,17 @@
             onCompletion(contactList);
         }];
     } else {
+        NSLog(@"no uid");
         onCompletion(nil);
     }
 }
 
+// Check if there's a pending request
 + (void)queryPendingContactListWithCompletionBlock:(void (^)(NSArray <User *> *pendingList))onCompletion {
-    NSString *currentUserUid = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserUid"];
-    if (currentUserUid) {
-        Firebase *friendRequestQuery = [[Firebase alloc]initWithUrl:[NSString stringWithFormat:@"https://strike7.firebaseio.com/contacts/%@/friend_request_contactslist",currentUserUid]];
-        [friendRequestQuery observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    if ([self currentUserUid]) {
+        Firebase *friendRequestQuery = [[Firebase alloc]initWithUrl:[NSString stringWithFormat:@"https://strike7.firebaseio.com/frdRequest/%@",[self currentUserUid]]];
+        Firebase *friendRequestList = [friendRequestQuery childByAutoId];
+        [friendRequestList observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
             NSMutableArray <User *> *pendingRequestArray = [NSMutableArray new];
             if (snapshot.value != [NSNull null]) {
                 for (FDataSnapshot *pendingRequest in snapshot.children) {
@@ -69,6 +70,53 @@
             }
         }];
         
+    } else {
+        NSLog(@"NO UID");
+        onCompletion(nil);
+    }
+}
+
+// check for duplicate contact
++ (BOOL)checkDuplicateUserInAcceptedContact:(NSString *)username {
+    __block BOOL isDuplicated;
+    if ([self currentUserUid]) {
+        Firebase *acceptedListQuery = [[Firebase alloc]initWithUrl:[NSString stringWithFormat:@"https://strike7.firebaseio.com/contacts/%@/contactslist",[self currentUserUid]]];
+        [[[acceptedListQuery queryOrderedByChild:@"username"] queryEqualToValue:username] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            if (snapshot.value == [NSNull null]) {
+                isDuplicated = NO;
+            } else {
+                isDuplicated = YES;
+            }
+        }];
+    }
+    return isDuplicated;
+}
+
+
+//+ (void)checkDuplicateUserInAcceptedContact:(NSString *)username completion:(void(^)(BOOL isDuplicated))onCompletion {
+//    if ([self currentUserUid]) {
+//        Firebase *acceptedListQuery = [[Firebase alloc]initWithUrl:[NSString stringWithFormat:@"https://strike7.firebaseio.com/contacts/%@/contactslist",[self currentUserUid]]];
+//        [[[acceptedListQuery queryOrderedByChild:@"username"] queryEqualToValue:username] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+//            if (snapshot.value == [NSNull null]) {
+//                onCompletion(NO);
+//            } else {
+//                onCompletion(YES);
+//            }
+//        }];
+//    }
+//}
+
+
+// current user id
++ (NSString *)currentUserUid {
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentUserUid"];
+    NSLog(@"currentUserUid = %@",uid);
+    
+    if (uid) {
+        return uid;
+    } else {
+        return nil;
     }
 }
 
